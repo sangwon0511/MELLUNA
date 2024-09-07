@@ -1,0 +1,266 @@
+.loading {
+  text-align: center;
+}
+
+/* 헤더 */
+.header {
+  /* 가로세로 크기 조절 */
+  height: 70px;
+  width: 100%;
+
+  /* 헤더 위쪽 고정 */
+  position: fixed;
+  top: 0px;
+  left: 0px;
+
+  /* 헤더 내부 요소 정렬 */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  /* 좌우 여백 */
+  padding: 0px 15px;
+  box-sizing: border-box;
+}
+
+.location {
+  /* location 내 글자와 아이콘 정렬 */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  /* 글자 크기, 굵기 */
+  font-weight: 600;
+  font-size: 18px;
+}
+
+
+.search-and-bell-box {
+  /* 돋보기와 벨 아이콘 정렬 */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.search-and-bell-box .search {
+  /* 왜 똑같은 크기에서 검색버튼이 더 크게 보이지 */
+  height: 20px;
+  width: 20px;
+}
+
+.search-and-bell-box .bell {
+  height: 24px;
+  width: 24px;
+}
+
+
+
+
+.categoryList {
+  width: 100%;
+  height: 50px;
+
+  /* position 고정 */
+  position: fixed;
+  /* header가 70px 였음 */
+  top: 70px;
+}
+
+.categoryButton {
+  height: 40px;
+  width: 40px;
+  border-radius: 10px;
+  background-color: #F7F8FA;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 16px;
+  margin-right: 6px;
+  float: left;
+}
+
+
+/* 상품 목록 */
+.list {
+  /* 헤더, 버튼, 네비게이션 바를 고려하여 높이 조정 */
+  height: calc(100% - 70px - 50px - 60px);
+  margin-top: 120px;
+  width: 100%;
+  overflow-y: scroll;
+
+  /* 스크롤에서 상하 여백 */
+  padding: 20px 0px;
+  box-sizing: border-box;
+}
+
+
+.usedcarButton {
+  height: 40px;
+  width: 84px;
+  border-radius: 10px;
+  background-color: #F7F8FA;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  float: left;
+  margin-right: 6px;
+}
+
+.usedcarButton p {
+  font-size: 14px;
+}
+
+.usedcar {
+  height: 13px;
+  width: 13px;
+  margin-right: 5px;
+}
+
+.houseButton {
+  height: 40px;
+  width: 84px;
+  border-radius: 10px;
+  background-color: #F7F8FA;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  float: left;
+  margin-right: 6px;
+}
+
+.houseButton p {
+  font-size: 14px;
+}
+
+.house {
+  height: 13px;
+  width: 13px;
+  margin-right: 5px;
+}
+
+.albaButton {
+  height: 40px;
+  width: 70px;
+  border-radius: 10px;
+  background-color: #F7F8FA;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 6px;
+}
+
+.albaButton p {
+  font-size: 14px;
+}
+
+.alba {
+  height: 16px;
+  width: 16px;
+  margin-right: 4px;
+}
+
+.content1 {
+  width: 100%;
+  height: 125px;
+  border-bottom: 1px solid;
+  border-color: #F2F3F7;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 15px;
+
+  padding: 0px 20px;
+  box-sizing: border-box;
+}
+
+.contentimg {
+  height: 108px;
+  width: 108px;
+  background-color: #D9D9D9;
+  border-radius: 5px;
+}
+
+.contenttext {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  width: calc(100% - 148px);
+  /* justify-content: center; */
+}
+
+
+#title {
+  margin-top: 15px;
+  font-size: 16px;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-break: break-all;
+}
+
+#timestamp {
+  margin-top: 5px;
+  font-size: 10pt;
+  color: #868B94;
+}
+
+#price {
+  margin-top: 3px;
+  font-size: 12pt;
+  font-weight: 600;
+}
+
+
+/* 푸터 */
+.footer {
+  height: 60px;
+  width: 100%;
+  border-top: 0.3px solid;
+  background-color: white;
+  border-color: #B2B2B2;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: fixed;
+}
+
+.homeButton {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+}
+
+.homeButton p {
+  font-size: 11px;
+}
+
+.home {
+  height: 25px;
+  width: 25px;
+}
+
+.chatButton {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+}
+
+.chatButton p {
+  font-size: 11px;
+}
+
+.chat {
+  height: 25px;
+  width: 25px;
+}
