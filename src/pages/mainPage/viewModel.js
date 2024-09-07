@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import { getMainPageItems } from "../apis";
+import { getMainPageItems } from "../../apis";
 
 function MainPageViewModel() {
 	const [item, setItem] = useState([]);
