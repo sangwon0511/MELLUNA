@@ -11,14 +11,14 @@ import { MdPersonSearch } from "react-icons/md";
 import { PiHouseFill } from "react-icons/pi";
 import { RiWechatLine } from "react-icons/ri";
 
-function ListItem({ title, writer, timestamp, price }) {
+function ListItem({ title, location, timestamp, price }) {
 	return (
 		<div className='content1'>
 			<div className='contentimg' />
 			<div className='contenttext'>
 				<p id='title'>{title}</p>
 				<p id='timestamp'>
-					{writer} · {timestamp}
+					{location} · {timestamp}
 				</p>
 				<p id='price'>{price}원</p>
 			</div>
@@ -68,13 +68,13 @@ function MainPageView({ viewModel }) {
 			{/* 상품 목록 */}
 			<div className='list'>
 				{isLoading ? (
-					<div className='loading'>데이터 불러오는중</div>
+					<div className='loading'>데이터 불러오는중...</div>
 				) : (
 					item.map((item, index) => (
 						<ListItem
 							key={index}
 							title={item.title}
-							writer={item.writer}
+							location={item.location}
 							timestamp={item.timestamp}
 							price={item.price}
 						></ListItem>
