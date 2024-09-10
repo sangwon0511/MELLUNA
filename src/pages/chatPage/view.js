@@ -1,4 +1,5 @@
 import React, { Fragment } from "react";
+import { useNavigate } from "react-router-dom";
 import "./styleChat.css";
 
 // 아이콘
@@ -8,11 +9,12 @@ import { FaCirclePlus } from "react-icons/fa6";
 import { LuPlus } from "react-icons/lu";
 
 function ChatPageView() {
+	const navigate = useNavigate();
 	return (
 		<div className="chat">
 			{/* 헤더 */}
 			<div className='header'>
-				<IoIosArrowBack className='arrowback'/>
+				<IoIosArrowBack onClick={() => {navigate(-1);}} className='arrowback'/>
 				{/* TODO:사용자이름과 온도를 데이터베이스에서 받아오기 */}
 				<div className='username'>멜룬멜룬</div>
 				{/* 사용자 온도...? */}

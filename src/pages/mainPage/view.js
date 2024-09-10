@@ -1,4 +1,5 @@
 import React, { Fragment } from "react";
+import { useNavigate } from "react-router-dom";
 import "./style.css";
 
 // 아이콘
@@ -29,6 +30,7 @@ function ListItem({ title, location, timestamp, price }) {
 
 function MainPageView({ viewModel }) {
 	const { item, isLoading } = viewModel;
+	const navigate = useNavigate();
 	return (
 		<Fragment>
 			{/* 헤더 */}
@@ -84,15 +86,15 @@ function MainPageView({ viewModel }) {
 
 			{/* 푸터 */}
 			<div className='footer'>
-				<div className='homeButton'>
+				<button className='homeButton'>
 					<PiHouseFill className='home' />
 					<p>홈</p>
-				</div>
+				</button>
 
-				<div className='chatButton'>
+				<button onClick={() => {navigate('/chat');}} className='chatButton'>
 					<RiWechatLine className='chat' />
 					<p>채팅</p>
-				</div>
+				</button>
 			</div>
 		</Fragment>
 	);
