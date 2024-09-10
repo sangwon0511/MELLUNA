@@ -1,23 +1,92 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import io from 'socket.io-client';
 
 import { getChatPageItems } from "../../apis";
+import { useParams } from "react-router-dom";
+
 
 function ChatPageViewModel() {
-	const [item, setItem] = useState([]);
-	const [isLoading, setIsLoading] = useState(true);
+	const params = useParams();
 
-	const fetchItem = async () => {
-		setIsLoading(true);
-		const item = await getChatPageItems();
-		setItem(item);
-		setIsLoading(false);
-	};
+	const chat_room_id = params.id
+	const [metadata, setMetadata] = useState({
+		opponent_name: "로딩중",
+		product_name: "로딩중",
+		product_price: 0
+	})
+	const [chatInput, setChatInput] = useState("")
+	const [socketIO, setSocketIO] = useState()
+	const [inputDisabled, setInputDisabled] = useState(true)
+	const [chat, setChat] = useState([])
+	const bottomRef = useRef()
+	const inputRef = useRef()
+
+	const addChat = ({ content, is_me }) => {
+		setChat((prev) => {
+			return [...prev, {
+				"sender_name": "me",
+				"content": content,
+				"is_me": is_me,
+			}]
+		})
+		bottomRef.current.scrollIntoView({ behavior: 'smooth' });
+		if (is_me === false) {
+			setInputDisabled(false)
+			inputRef.current.focus()
+
+		}
+	}
+
+	const onChatInputChange = (e) => {
+		setChatInput(e.target.value)
+	}
+
+	const onChatSubmit = (e) => {
+		setInputDisabled(true)
+		if (e.type == "submit") {
+			e.preventDefault()
+		}
+		if (chatInput.trim().length == 0) {
+			return
+		}
+		socketIO.emit("send_message", { "content": chatInput })
+		setChatInput("")
+		bottomRef.current.scrollIntoView({ behavior: 'smooth' });
+		inputRef.current.focus()
+	}
 
 	useEffect(() => {
-		fetchItem();
+		getChatPageItems(chat_room_id).then((res) => {
+			setMetadata({
+				opponent_name: res.opponent_name,
+				product_name: res.product_name,
+				product_price: res.product_price
+			});
+			console.log(res.chat)
+
+			setChat(res.chat);
+		});
 	}, []);
 
-	return { item, isLoading };
+	useEffect(() => {
+		var socket = io.connect("/")
+		setSocketIO(socket)
+
+		socket.emit("join", { "room_id": chat_room_id })
+
+		socket.on('join', () => { })
+
+		socket.on("receive_message", addChat)
+
+		socket.on("alert", (data) => { alert(data['content']) })
+
+		return () => {
+			socket.emit("leave", {})
+		}
+
+	}, []);
+
+	return { metadata, chat, chat_room_id, inputDisabled, onChatInputChange, inputRef, chatInput, bottomRef, onChatSubmit }
 }
 
 export default ChatPageViewModel;

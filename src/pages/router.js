@@ -1,8 +1,9 @@
 import React from "react";
-import { createBrowserRouter, RouterProvider, useNavigate } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import MainPage from "./mainPage";
 import ChatPage from "./chatPage";
+import ItemPage from "./itemPage";
 
 function Router() {
 	const router = createBrowserRouter([
@@ -11,8 +12,12 @@ function Router() {
 			element: <MainPage></MainPage>,
 		},
 		{
-			path: "/chat",
+			path: "/chat/:id",
 			element: <ChatPage></ChatPage>
+		},
+		{
+			path: "/item/:id",
+			element: <ItemPage></ItemPage>
 		}
 	]);
 

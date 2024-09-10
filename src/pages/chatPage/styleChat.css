@@ -8,7 +8,7 @@
 }
 
 /* 헤더 */
-.chat > .header {
+.chat>.header {
   /* 가로세로 크기 조절 */
   height: 70px;
   width: 100%;
@@ -33,20 +33,22 @@
   border-color: #DCDEE3;
 }
 
-.chat > .header > .arrowback {
+.chat>.header>.arrowback {
+  position: fixed;
   height: 27px;
   width: 27px;
-  margin-left: 31px;
+  margin-left: 25px;
+  cursor: pointer;
 }
 
-.chat > .header > .username {
+.chat>.header>.username {
   margin: 0 auto;
-  font-size: 20pt;
+  font-size: 16pt;
 }
 
 
 /* 상품 정보 */
-.chat > .banner {
+.chat>.banner {
   position: fixed;
   top: 70px;
   left: 0px;
@@ -57,14 +59,14 @@
   margin-bottom: 4px;
 }
 
-.banner > .info {
+.banner>.info {
   padding-top: 15px;
   padding-left: 16px;
   width: 100%;
   display: flex;
 }
 
-.info > .itemimg {
+.info>.itemimg {
 
   width: 40px;
   height: 40px;
@@ -77,12 +79,12 @@
   margin-left: 10px;
 }
 
-.iteminfo > #title {
+.iteminfo>#title {
   font-size: 13pt;
   margin: auto;
 }
 
-.iteminfo > #price {
+.iteminfo>#price {
   font-size: 14pt;
   margin: auto;
   margin-top: -3px;
@@ -112,11 +114,40 @@
   padding-left: 5px;
 }
 
+.alart {
+  display: flex;
+  position: fixed;
+  top: 195px;
+  left: 15px;
+  height: 40px;
+  border-radius: 20px;
+  width: calc(100% - 30px);
+  margin: 0 auto;
+  background-color: #FFE4D2;
+  align-items: center;
+  gap: 5px;
+
+}
+
+.alart p {
+  color: #FF6F0F;
+  font-size: 14px;
+}
+
+.lock {
+  padding-left: 18px;
+  height: 18px;
+  width: 20px;
+  color: #FF6F0F;
+}
+
 /* 채팅창 */
-.chat > .chating {
+.chat>.chating {
   /* 헤더, 버튼, 네비게이션 바를 고려하여 높이 조정 */
-  height: calc(100% - 70px - 117px - 80px);
-  margin-top: 187px;
+  height: calc(100% - 70px - 117px - 80px - 35px);
+  position: absolute;
+
+  top: 245px;
   width: 100%;
   overflow-y: scroll;
 
@@ -125,9 +156,91 @@
   box-sizing: border-box;
 }
 
+.chating::-webkit-scrollbar {
+  display: none;
+}
+
+
+
+.urChatArea {
+  display: inline-block;
+
+
+  margin-top: 20px;
+
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  margin-left: 20px;
+}
+
+.urChatArea>.opponentimg {
+  width: 40px;
+  height: 40px;
+  border-radius: 100px;
+  border: 0.8px solid rgb(230, 230, 230);
+  background-color: rgb(240, 240, 240);
+}
+
+.urChatArea>.urChat {
+  max-width: 50%;
+  background-color: rgb(240, 240, 240);
+  border-radius: 20px;
+  padding: 10px 20px;
+  font-size: 15px;
+  word-break: break-all;
+}
+
+.meChatArea {
+  margin-top: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: end;
+}
+
+.meChatArea>.meChat {
+  margin-right: 20px;
+  max-width: 50%;
+  background-color: #FF6F0F;
+  color: white;
+  border-radius: 20px;
+  padding: 10px 20px;
+  font-size: 15px;
+  word-break: break-all;
+}
+
+
+/* 
+.chating > .myChat {
+
+  width: min-content;
+  text-align: center;
+  background-color: #FF6F0F;
+  color: #ffffff;
+  border-radius: 100px;
+  max-width: 50%;
+  font-size: 13pt;
+  padding: 7px 11px;
+}
+
+.chating > .urChat {
+  width: min-content;
+  text-align: center;
+  background-color: #D9D9D9;
+
+  border-radius: 100px;
+  max-width: 50%;
+  font-size: 13pt;
+  padding: 7px 11px;
+}
+
+.chating > .opponentimg {
+  border-radius: 100px;
+  background-color: #868B94;
+} */
 
 /* 푸터 */
-.chat > .chatfooter {
+.chat>.chatfooter {
   height: 75px;
   width: 100%;
   background-color: white;
@@ -141,7 +254,7 @@
   position: fixed;
 }
 
-.chatfooter > .plus {
+.chatfooter>.plus {
   height: 35px;
   width: 35px;
   float: left;
@@ -150,27 +263,53 @@
   margin-left: 5px;
 }
 
-.chatfooter > .input {
+.chatfooter>.input {
   height: 40px;
-  width: calc(100% - 40px - 40px - 20px - 20px );
+  width: calc(100% - 40px - 40px - 20px - 20px);
   background-color: #F2F3F6;
   border-radius: 100px;
   display: flex;
   align-items: center;
+  color: #4c4c4c;
+  font-weight: 500;
+  border: 0;
+  outline: 0;
+  padding: 0px 20px;
+  font-size: 15px;
+  box-sizing: border-box;
+  transition: 0.5s;
+
 }
 
-.input p {
+.chatfooter>.inputLock {
+  height: 40px;
+  width: calc(100% - 40px - 40px - 20px - 20px);
+  background-color: #FFE4D2;
+  border-radius: 100px;
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  border: 0;
+  outline: 0;
+  padding: 0px 20px;
+  font-size: 15px;
+  box-sizing: border-box;
+}
+
+.input::placeholder {
   color: #ADB1BA;
-  padding-left: 15px;
 }
 
-.chatfooter > .send {
+.inputLock::placeholder {
+  color: #FF6F0F;
+}
+
+.chatfooter>.send {
   height: 35px;
   width: 35px;
   color: #D1D3D8;
   margin-right: 5px;
+  cursor: pointer;
 }
 
-.chatfooter {
-
-}
+.chatfooter {}

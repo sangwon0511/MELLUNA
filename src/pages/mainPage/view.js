@@ -12,10 +12,11 @@ import { MdPersonSearch } from "react-icons/md";
 import { PiHouseFill } from "react-icons/pi";
 import { RiWechatLine } from "react-icons/ri";
 
-function ListItem({ title, location, timestamp, price }) {
+function ListItem({ title, location, timestamp, price, item_id }) {
+	const navigate = useNavigate();
 	return (
-		<div className='content1'>
-			<div className='contentimg' />
+		<div onClick={() => { navigate(`/item/${item_id}`); }} className='content1'>
+			<img className='contentimg' src={`${process.env.PUBLIC_URL}/profile${item_id}.png`} />
 			<div className='contenttext'>
 				<p id='title'>{title}</p>
 				<p id='timestamp'>
@@ -30,13 +31,14 @@ function ListItem({ title, location, timestamp, price }) {
 
 function MainPageView({ viewModel }) {
 	const { item, isLoading } = viewModel;
+
 	const navigate = useNavigate();
 	return (
 		<Fragment>
 			{/* 헤더 */}
 			<div className='header'>
 				<div className='location'>
-					<p>엘리아스</p>
+					<p>UNIST</p>
 					<SlArrowDown className='arrowdown' />
 				</div>
 				<div className='search-and-bell-box'>
@@ -79,6 +81,7 @@ function MainPageView({ viewModel }) {
 							location={item.location}
 							timestamp={item.timestamp}
 							price={item.price}
+							item_id={item.item_id}
 						></ListItem>
 					))
 				)}
@@ -87,13 +90,13 @@ function MainPageView({ viewModel }) {
 			{/* 푸터 */}
 			<div className='footer'>
 				<button className='homeButton'>
-					<PiHouseFill className='home' />
-					<p>홈</p>
+					<PiHouseFill color="black" className='home' />
+					<p style={{ color: "black" }}>홈</p>
 				</button>
 
-				<button onClick={() => {navigate('/chat');}} className='chatButton'>
-					<RiWechatLine className='chat' />
-					<p>채팅</p>
+				<button className='chatButton'>
+					<RiWechatLine color="black" className='chat' />
+					<p style={{ color: "black" }}>채팅</p>
 				</button>
 			</div>
 		</Fragment>
