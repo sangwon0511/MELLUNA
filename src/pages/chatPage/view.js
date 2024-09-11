@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import "./styleChat.css";
 
 // 아이콘
-import { IoIosArrowBack, IoIosSend } from "react-icons/io";
+import { IoIosArrowBack, IoIosSend, IoIosWarning } from "react-icons/io";
 import { FaCalendar } from "react-icons/fa";
 import { FaCirclePlus } from "react-icons/fa6";
 import { LuPlus } from "react-icons/lu";
@@ -41,7 +41,7 @@ const customModalStyles = {
 	},
 	content: {
 		width: "290px",
-		height: "430px",
+		height: "280px",
 		zIndex: "150",
 		position: "absolute",
 		top: "50%",
@@ -51,7 +51,7 @@ const customModalStyles = {
 		boxShadow: "2px 2px 2px rgba(0, 0, 0, 0.25)",
 		backgroundColor: "white",
 		justifyContent: "center",
-		overflow: "auto",
+		overflowY: "scroll",
 		display: "flex",
 	},
 };
@@ -72,16 +72,24 @@ function ChatPageView({ viewModel }) {
 				shouldCloseOnOverlayClick={false}
 			>
 				<div className="modalDiv">
-					<img src={`${process.env.PUBLIC_URL}/alart.png`} className="alartimg"></img>
-					<div>
-						<p id="alartmessage1">조심하세요!</p>
-						<p id="alartmessage2">FDGPT가</p>
-						<p id="alartmessage3">사기 거래를 감지했어요.</p>
-						{/* <p>FDGPT가 보낸 메시지:</p>
+					<div className="alartDiv">
+						<img src={`${process.env.PUBLIC_URL}/alart.png`} className="alartimg"></img>
 						<div>
-							<p>{viewModel.modal.content}</p>
-						</div> */}
+							<p id="alartmessage1">조심하세요!</p>
+							<p id="alartmessage2">FDGPT가</p>
+							<p id="alartmessage3">사기 거래를 감지했어요.</p>
+						</div>
 					</div>
+					<hr></hr>
+					<div className="fdmessage">
+						<div className="messagetitle">
+							<IoIosWarning className="warning" />
+							<p>FDGPT가 보낸 메시지</p>
+						</div>
+						<p>{viewModel.modal.content}</p>
+						<div style={{ height: "50px" }}></div>
+					</div>
+
 					<div className="modalButton" onClick={viewModel.closeModal}>네, 확인했어요</div>
 
 				</div>
