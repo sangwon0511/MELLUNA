@@ -20,6 +20,10 @@ function ChatPageViewModel() {
 	const [chat, setChat] = useState([])
 	const bottomRef = useRef()
 	const inputRef = useRef()
+	const [modal, setModal] = useState({
+		is_open: false,
+		content: "로딩중",
+	});
 
 	const addChat = ({ content, is_me }) => {
 		setChat((prev) => {
@@ -68,6 +72,22 @@ function ChatPageViewModel() {
 		});
 	}, []);
 
+	const OpenModal = (message) => {
+		setModal({
+			"is_open": true,
+			"content": message
+		})
+		console.log(message)
+	}
+
+	const closeModal = () => {
+		setModal({
+			"is_open": false,
+			"content": ""
+		})
+
+	}
+
 	useEffect(() => {
 		var socket = io.connect("/")
 		setSocketIO(socket)
@@ -78,7 +98,7 @@ function ChatPageViewModel() {
 
 		socket.on("receive_message", addChat)
 
-		socket.on("alert", (data) => { alert(data['content']) })
+		socket.on("alert", (data) => { OpenModal(data['content']) })
 
 		return () => {
 			socket.emit("leave", {})
@@ -86,7 +106,7 @@ function ChatPageViewModel() {
 
 	}, []);
 
-	return { metadata, chat, chat_room_id, inputDisabled, onChatInputChange, inputRef, chatInput, bottomRef, onChatSubmit }
+	return { metadata, closeModal, chat, chat_room_id, inputDisabled, onChatInputChange, inputRef, chatInput, bottomRef, onChatSubmit, modal }
 }
 
 export default ChatPageViewModel;
